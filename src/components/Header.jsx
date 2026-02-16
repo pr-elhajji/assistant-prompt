@@ -17,7 +17,10 @@ const Header = ({ onOpenSaved, onOpenSettings }) => {
 
     return (
         <header>
-            <h1>{t('title')}</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <img src="/logo.png" alt="Logo" style={{ height: '32px' }} />
+                <h1>{t('title')}</h1>
+            </div>
             <div style={{ display: 'flex', gap: '1rem' }}>
                 <button onClick={onOpenSaved} className="btn btn-secondary" title={t('saved_prompts')}>
                     <BookMarked size={18} />
