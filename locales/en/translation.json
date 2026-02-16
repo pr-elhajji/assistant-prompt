@@ -49,5 +49,9 @@
     "help_content": "This project is open source. You can contribute by reporting bugs or suggesting features on GitHub.",
     "repo_link": "View Source Code",
     "contact": "Contact",
-    "version": "Version"
+    "version": "Version",
+    "privacy_title": "Privacy",
+    "privacy_content": "Your API keys and settings are stored locally on your device (localStorage). They are never sent to our servers.",
+    "data_storage_title": "Data Storage",
+    "saved_prompts_privacy": "Your prompts are stored locally in your browser. Clearing your cache will remove them."
 }
