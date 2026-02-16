@@ -236,6 +236,12 @@ const DynamicForm = ({ method, markdownData, onGenerate }) => {
                     `${t('ai_error')}: ${errorMessage}\n\n` +
                     `⚠️ ${t('configure_model_help') || "Please go to Settings and select a Model for the chosen Provider."}`
                 );
+            } else if (errorMessage.includes("credits") || errorMessage.includes("afford")) {
+                alert(
+                    `${t('ai_error')}: ${errorMessage}\n\n` +
+                    `⚠️ OpenRouter Error: Insufficient credits or max_tokens too high.\n` +
+                    `We have capped max_tokens to 4000 to help with this. If you still see this, check your OpenRouter credits.`
+                );
             } else {
                 alert(t('ai_error') || "AI Generation Failed: " + errorMessage);
             }

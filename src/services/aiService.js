@@ -176,7 +176,8 @@ const callOpenRouter = async (settings, prompt) => {
         body: JSON.stringify({
             model: settings.openRouterModel,
             messages: [{ role: "user", content: prompt }],
-            temperature: parseFloat(settings.temperature || 0.7)
+            temperature: parseFloat(settings.temperature || 0.7),
+            max_tokens: 4000 // Set a reasonable limit to avoid "insufficient credits" errors
         })
     });
 
