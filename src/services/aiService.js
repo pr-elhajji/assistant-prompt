@@ -4,7 +4,7 @@
  */
 
 const getSettings = () => {
-    return JSON.parse(localStorage.getItem('aiSettings') || '{"provider": "ollama", "ollamaUrl": "http://localhost:11434", "ollamaModel": "llama3", "openaiKey": "", "openaiModel": "gpt-3.5-turbo", "geminiKey": "", "geminiModel": "gemini-pro", "temperature": 0.7}');
+    return JSON.parse(localStorage.getItem('aiSettings') || '{"provider": "ollama", "ollamaUrl": "http://localhost:11434", "ollamaModel": "llama3", "openaiKey": "", "openaiModel": "gpt-3.5-turbo", "geminiKey": "", "geminiModel": "gemini-pro", "openRouterKey": "", "openRouterModel": "openai/gpt-3.5-turbo", "temperature": 0.7}');
 };
 
 export const getOllamaModels = async (settings) => {
@@ -29,6 +29,8 @@ export const generateText = async (prompt, context = "") => {
                 return await callOllama(settings, fullPrompt);
             case 'openai':
                 return await callOpenAI(settings, fullPrompt);
+            case 'openrouter':
+                return await callOpenRouter(settings, fullPrompt);
             case 'gemini':
                 return await callGemini(settings, fullPrompt);
             default:
@@ -116,4 +118,31 @@ const callGemini = async (settings, prompt) => {
 
     const data = await response.json();
     return data.candidates[0].content.parts[0].text;
+};
+
+const callOpenRouter = async (settings, prompt) => {
+    if (!settings.openRouterKey) throw new Error("OpenRouter API Key is missing");
+
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${settings.openRouterKey}`,
+            'HTTP-Referer': window.location.href, // Required by OpenRouter for rankings
+            'X-Title': 'Assistant Prompt' // Optional
+        },
+        body: JSON.stringify({
+            model: settings.openRouterModel,
+            messages: [{ role: "user", content: prompt }],
+            temperature: parseFloat(settings.temperature || 0.7)
+        })
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        throw new Error(`OpenRouter Error: ${err.error?.message || response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
 };

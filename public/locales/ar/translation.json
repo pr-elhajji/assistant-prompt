@@ -36,6 +36,7 @@
     "ollama_config": "إعدادات Ollama",
     "openai_config": "إعدادات OpenAI",
     "gemini_config": "إعدادات Gemini",
+    "openrouter_config": "إعدادات OpenRouter",
     "base_url": "رابط الخادم",
     "model_name": "النموذج",
     "api_key": "مفتاح API",

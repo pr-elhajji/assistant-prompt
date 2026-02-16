@@ -13,6 +13,8 @@ const SettingsModal = ({ isOpen, onClose }) => {
         openaiModel: 'gpt-3.5-turbo',
         geminiKey: '',
         geminiModel: 'gemini-pro',
+        openRouterKey: '',
+        openRouterModel: 'openai/gpt-3.5-turbo',
         temperature: 0.7
     });
     const [ollamaModels, setOllamaModels] = useState([]);
@@ -76,6 +78,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
                         <option value="ollama">Ollama (Local)</option>
                         <option value="openai">OpenAI</option>
                         <option value="gemini">Google Gemini</option>
+                        <option value="openrouter">OpenRouter</option>
                     </select>
                 </div>
 
@@ -167,6 +170,32 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                 value={settings.geminiModel}
                                 onChange={handleChange}
                                 placeholder="gemini-pro"
+                            />
+                        </div>
+                    </div>
+                )}
+
+                {settings.provider === 'openrouter' && (
+                    <div className="card" style={{ padding: '1rem', marginTop: '1rem' }}>
+                        <h4>{t('openrouter_config') || "OpenRouter Configuration"}</h4>
+                        <div className="form-group">
+                            <label>{t('api_key')}</label>
+                            <input
+                                type="password"
+                                name="openRouterKey"
+                                value={settings.openRouterKey}
+                                onChange={handleChange}
+                                placeholder="sk-or-..."
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>{t('model_name')}</label>
+                            <input
+                                type="text"
+                                name="openRouterModel"
+                                value={settings.openRouterModel}
+                                onChange={handleChange}
+                                placeholder="openai/gpt-3.5-turbo, anthropic/claude-3-haiku"
                             />
                         </div>
                     </div>
