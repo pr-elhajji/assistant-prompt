@@ -48,9 +48,9 @@ const SavedPromptsModal = ({ isOpen, onClose }) => {
                                         {new Date(prompt.date).toLocaleString()}
                                     </span>
                                 </div>
-                                <pre style={{ 
-                                    background: 'var(--background-color)', 
-                                    padding: '0.5rem', 
+                                <pre style={{
+                                    background: 'var(--background-color)',
+                                    padding: '0.5rem',
                                     borderRadius: '4px',
                                     whiteSpace: 'pre-wrap',
                                     maxHeight: '100px',
@@ -71,6 +71,11 @@ const SavedPromptsModal = ({ isOpen, onClose }) => {
                         ))}
                     </div>
                 )}
+                <div style={{ marginTop: '1.5rem', padding: '0.75rem', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: '8px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <p style={{ margin: 0 }}>
+                        💾 <strong>{t('data_storage_title') || "Data Storage"}:</strong> {t('saved_prompts_privacy') || "Your prompts are stored locally in your browser. Clearing your cache will remove them."}
+                    </p>
+                </div>
             </div>
         </div>
     );

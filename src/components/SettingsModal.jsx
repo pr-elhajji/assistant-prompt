@@ -288,6 +288,12 @@ const SettingsModal = ({ isOpen, onClose }) => {
                     </div>
                 </div>
 
+                <div style={{ marginTop: '1.5rem', padding: '0.75rem', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: '8px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <p style={{ margin: 0 }}>
+                        🔒 <strong>{t('privacy_title') || "Privacy Note"}:</strong> {t('privacy_content') || "Your API keys and settings are stored locally on your device (localStorage). They are never sent to our servers."}
+                    </p>
+                </div>
+
                 <div className="modal-footer">
                     <button className="btn btn-secondary" onClick={onClose}>
                         {t('cancel') || "Cancel"}

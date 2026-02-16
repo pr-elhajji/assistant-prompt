@@ -53,5 +53,9 @@
     "help_content": "Ce projet est open source. Vous pouvez contribuer en signalant des bugs ou en proposant des fonctionnalités sur GitHub.",
     "repo_link": "Voir le code source",
     "contact": "Contact",
-    "version": "Version"
+    "version": "Version",
+    "privacy_title": "Confidentialité",
+    "privacy_content": "Vos clés API et paramètres sont stockés localement sur votre appareil (localStorage). Ils ne sont jamais envoyés sur nos serveurs.",
+    "data_storage_title": "Stockage des données",
+    "saved_prompts_privacy": "Vos prompts sont stockés localement dans votre navigateur. Vider le cache les supprimera."
 }
