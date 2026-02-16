@@ -1,0 +1,28 @@
+# Assistant Prompt
+
+Assistant Prompt is a free, open-source web application designed to help users create highly effective and structured prompts for Generative AI models like ChatGPT, Claude, Gemini, and local LLMs (Ollama).
+
+## Key Features
+
+- **Structured Prompting**: Uses a proven methodology (Role, Context, Task, Constraints, Output) to generate high-quality prompts.
+- **Multi-Provider Support**: Supports OpenAI, Google Gemini, OpenRouter, and local Ollama instances.
+- **Privacy-Focused**: All API keys and prompts are stored locally in the user's browser (localStorage). No data is sent to our servers.
+- **Multilingual**: Available in English, French, and Arabic.
+- **Template Library**: Includes built-in templates for various tasks (Writing, Coding, Analysis).
+
+## How to Use
+
+1. **Select a Method**: Choose a prompting technique (e.g., ACT, RTF, TAG).
+2. **Fill the Form**: Input your specific context, role, and task details.
+3. **Generate**: The tool constructs the optimized prompt.
+4. **Refine**: Use the built-in AI connection to test and refine the prompt directly.
+
+## Technical Details
+
+- **Stack**: React, Vite, TailwindCSS (conceptually, uses custom CSS).
+- **Deployment**: hosted on GitHub Pages.
+- **Source Code**: https://github.com/pr-elhajji/assistant-prompt
+
+## Author
+
+Created by M.EL Hajji.
