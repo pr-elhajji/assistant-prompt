@@ -7,6 +7,7 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/pr-elhajji/assistant-prompt?style=social)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://pr-elhajji.github.io/assistant-prompt/)
 
 ![GitHub forks](https://img.shields.io/github/forks/pr-elhajji/assistant-prompt?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/pr-elhajji/assistant-prompt?style=social)
@@ -16,6 +17,8 @@
 </div>
 <br>
 A powerful, interactive web application for generating high-quality AI prompts using pedagogical methods (RCT, CRAFT, CONTEXTE-V, etc.).
+
+[**✨ Try the Live Demo Here**](https://pr-elhajji.github.io/assistant-prompt/)
 <div align="left">
 
 ## 🚀 Features
@@ -110,6 +113,19 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🚀 Deployment
+
+This project uses [GitHub Pages](https://pages.github.com/) for hosting.
+
+To deploy a new version:
+
+1.  Make sure your changes are committed.
+2.  Run the deploy script:
+    ```bash
+    npm run deploy
+    ```
+    This will automatically build the project and push the `dist` folder to the `gh-pages` branch.
 
 ## 👏 Credits
 
