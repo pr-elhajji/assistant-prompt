@@ -37,6 +37,7 @@
     "ollama_config": "Configuration Ollama",
     "openai_config": "Configuration OpenAI",
     "gemini_config": "Configuration Gemini",
+    "openrouter_config": "Configuration OpenRouter",
     "base_url": "URL de base",
     "model_name": "Modèle",
     "api_key": "Clé API",
