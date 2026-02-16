@@ -22,7 +22,7 @@ i18n
       escapeValue: false, // not needed for react as it escapes by default
     },
     backend: {
-        loadPath: import.meta.env.BASE_URL + 'locales/{{lng}}/{{ns}}.json?v=' + new Date().getTime(), // Add cache buster
+        loadPath: '/locales/{{lng}}/{{ns}}.json',
     }
   });
 
