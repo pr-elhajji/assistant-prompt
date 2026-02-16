@@ -31,5 +31,22 @@
     "translate_to_english": "Translate your Prompt to English",
     "step_by_step": "Add 'Think step by step'",
     "footer_credits": "M.EL Hajji",
-    "footer_license": "CC BY NC SA"
+    "footer_license": "CC BY NC SA",
+    "settings_title": "Settings",
+    "ai_provider": "AI Provider",
+    "ollama_config": "Ollama Configuration",
+    "openai_config": "OpenAI Configuration",
+    "gemini_config": "Gemini Configuration",
+    "base_url": "Base URL",
+    "model_name": "Model",
+    "api_key": "API Key",
+    "temperature": "Temperature",
+    "settings_save": "Save",
+    "settings_cancel": "Cancel",
+    "fetch_models": "Fetch Models",
+    "help_title": "Help & Contribution",
+    "help_content": "This project is open source. You can contribute by reporting bugs or suggesting features on GitHub.",
+    "repo_link": "View Source Code",
+    "contact": "Contact",
+    "version": "Version"
 }
