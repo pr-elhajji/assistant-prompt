@@ -53,7 +53,7 @@ export const parseMarkdown = (text) => {
  */
 export const fetchAndParseData = async () => {
     try {
-        const response = await fetch('/data/data.md');
+        const response = await fetch(import.meta.env.BASE_URL + 'data/data.md');
         if (!response.ok) throw new Error('Failed to fetch data.md');
         const text = await response.text();
         return parseMarkdown(text);

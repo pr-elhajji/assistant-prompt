@@ -18,7 +18,7 @@ const Header = ({ onOpenSaved, onOpenSettings, onOpenHelp }) => {
     return (
         <header>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <img src="/logo.svg" alt="Logo" style={{ height: '32px' }} />
+                <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="Logo" style={{ height: '32px' }} />
                 <h1>{t('title')}</h1>
             </div>
             <div style={{ display: 'flex', gap: '1rem' }}>
