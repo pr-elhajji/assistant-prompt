@@ -100,6 +100,26 @@ public/
 └── locales/          # Translation files (en/fr/ar)
 ```
 
+## 🔧 Troubleshooting
+
+### Ollama Connection Issues (CORS)
+
+If you see a "Network Error" or "CORS" error when trying to connect to your local Ollama instance from the deployed website, you need to allow the website to access your local server.
+
+Stop your running Ollama instance and restart it with the following command:
+
+**Mac/Linux:**
+```bash
+OLLAMA_ORIGINS="*" ollama serve
+```
+
+**Windows (PowerShell):**
+```powershell
+$env:OLLAMA_ORIGINS="*"; ollama serve
+```
+
+This allows the web application (hosted on GitHub Pages) to communicate with your local Ollama API.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

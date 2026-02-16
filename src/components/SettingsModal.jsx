@@ -43,14 +43,14 @@ const SettingsModal = ({ isOpen, onClose }) => {
         setOllamaModels(models);
         setIsLoadingModels(false);
         if (models.length > 0 && !models.includes(settings.ollamaModel)) {
-             setSettings(prev => ({...prev, ollamaModel: models[0]}));
+            setSettings(prev => ({ ...prev, ollamaModel: models[0] }));
         }
     }, [settings]);
-    
+
     // Auto-fetch on open if provider is ollama
     useEffect(() => {
         if (isOpen && settings.provider === 'ollama' && ollamaModels.length === 0) {
-             fetchOllamaModels(); // eslint-disable-line
+            fetchOllamaModels(); // eslint-disable-line
         }
     }, [isOpen, settings.provider, ollamaModels.length, fetchOllamaModels]);
 
@@ -91,9 +91,13 @@ const SettingsModal = ({ isOpen, onClose }) => {
                                 onChange={handleChange}
                                 placeholder="http://localhost:11434"
                             />
+                            <small style={{ display: 'block', marginTop: '0.5rem', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
+                                ⚠️ {t('ollama_cors_warning') || "For local Ollama, ensure CORS is enabled:"} <br />
+                                <code>OLLAMA_ORIGINS="*" ollama serve</code>
+                            </small>
                         </div>
                         <div className="form-group">
-                            <label style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                            <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 {t('model_name')}
                                 <button type="button" onClick={fetchOllamaModels} className="btn btn-sm btn-secondary" disabled={isLoadingModels}>
                                     <RefreshCw size={14} className={isLoadingModels ? "animate-spin" : ""} /> {t('fetch_models')}
@@ -167,23 +171,23 @@ const SettingsModal = ({ isOpen, onClose }) => {
                         </div>
                     </div>
                 )}
-                
-                <div className="form-group" style={{marginTop: '1rem'}}>
-                    <label style={{display:'flex', justifyContent:'space-between'}}>
-                        {t('temperature')} 
-                        <span style={{color:'var(--primary-color)'}}>{settings.temperature}</span>
+
+                <div className="form-group" style={{ marginTop: '1rem' }}>
+                    <label style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        {t('temperature')}
+                        <span style={{ color: 'var(--primary-color)' }}>{settings.temperature}</span>
                     </label>
-                    <input 
-                        type="range" 
-                        min="0" 
-                        max="1" 
-                        step="0.1" 
-                        name="temperature" 
-                        value={settings.temperature} 
-                        onChange={handleChange} 
-                        style={{width: '100%'}}
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.1"
+                        name="temperature"
+                        value={settings.temperature}
+                        onChange={handleChange}
+                        style={{ width: '100%' }}
                     />
-                    <div style={{display:'flex', justifyContent:'space-between', fontSize:'0.75rem', color:'var(--text-secondary)'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                         <span>Précis (0.0)</span>
                         <span>Créatif (1.0)</span>
                     </div>
