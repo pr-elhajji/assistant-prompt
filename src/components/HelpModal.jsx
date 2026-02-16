@@ -33,6 +33,14 @@ const HelpModal = ({ isOpen, onClose }) => {
                         </a>
                     </div>
 
+                    <div style={{ marginTop: '2rem' }}>
+                        <h3>{t('privacy_title')}</h3>
+                        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                            {t('privacy_content')} <br />
+                            {t('saved_prompts_privacy')}
+                        </p>
+                    </div>
+
                     <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
                         <p>{t('version')}: 1.0.0</p>
                         <p>{t('contact')}: <a href="https://github.com/pr-elhajji" target="_blank" rel="noopener noreferrer">@pr-elhajji</a></p>
