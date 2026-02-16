@@ -334,7 +334,7 @@ const DynamicForm = ({ method, markdownData, onGenerate }) => {
                                  // Hardcode check: formState['rct-metier1'] === 'Élève' ?
                                  // Or generically.
                                  // For RCT, rct-metier1.
-                                 const role1 = formState[`${method.toLowerCase()}-metier1`] || formState[`${method.toLowerCase().replace('-','')}-metier1`] || formState[`${method.toLowerCase()}-niveau1`]; // Hacky
+                                 // const role1 = formState[`${method.toLowerCase()}-metier1`] ...
                                  // Better: loop over state keys? 
                                  
                                  // Let's assume for RCT/CONTEXTE-V we know the key.

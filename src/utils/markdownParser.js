@@ -42,23 +42,7 @@ export const parseMarkdown = (text) => {
         }
     });
 
-    // 3. Consistency Check (Audit)
-    // Identify top-level roles and check if they have defining sections
-    // This is heuristic based on the structure (e.g., RCTrole lists jobs)
-    const roleCategories = ['RCTrole', 'RCTP2F2Rrole', 'ACTIFidentite'];
-    
-    roleCategories.forEach(cat => {
-        if (data[cat]) {
-            data[cat].forEach(role => {
-                // Heuristic: If a role is also a key in data, it is a sub-category.
-                // We don't necessarily enforce that EVERY role must have a sub-category,
-                // but we can log if we expect one.
-                // Actually, the app logic is: IF data[role] exists, show second dropdown. 
-                // We can't know for sure if a role *should* have sub-options without more context,
-                // but we can list which ones DO have sub-options for debug.
-            });
-        }
-    });
+
 
     return { params, data, warnings };
 };

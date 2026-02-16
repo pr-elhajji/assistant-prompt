@@ -76,7 +76,6 @@ const callOpenAI = async (settings, prompt) => {
         body: JSON.stringify({
             model: settings.openaiModel,
             messages: [{ role: "user", content: prompt }],
-            messages: [{ role: "user", content: prompt }],
             temperature: parseFloat(settings.temperature || 0.7)
         })
     });
