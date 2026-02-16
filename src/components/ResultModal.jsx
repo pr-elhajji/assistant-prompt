@@ -6,6 +6,8 @@ const ResultModal = ({ isOpen, onClose, prompt, onSave }) => {
     const { t } = useTranslation();
     const [copySuccess, setCopySuccess] = useState(false);
 
+    const [saveSuccess, setSaveSuccess] = useState(false);
+
     if (!isOpen) return null;
 
     const handleCopy = async () => {
@@ -15,6 +17,14 @@ const ResultModal = ({ isOpen, onClose, prompt, onSave }) => {
             setTimeout(() => setCopySuccess(false), 2000);
         } catch (err) {
             console.error('Failed to copy!', err);
+        }
+    };
+
+    const handleSaveClick = () => {
+        if (onSave) {
+            onSave();
+            setSaveSuccess(true);
+            setTimeout(() => setSaveSuccess(false), 2000);
         }
     };
 
@@ -49,8 +59,8 @@ const ResultModal = ({ isOpen, onClose, prompt, onSave }) => {
                 />
 
                 <div className="modal-footer">
-                    <button className="btn btn-secondary" onClick={onSave} title={t('save')}>
-                        <Save size={18} /> {t('save')}
+                    <button className={`btn ${saveSuccess ? 'btn-success' : 'btn-secondary'}`} onClick={handleSaveClick} title={t('save')}>
+                        <Save size={18} /> {saveSuccess ? t('saved') || "Sauvegardé !" : t('save')}
                     </button>
                     <button className={`btn ${copySuccess ? 'btn-success' : 'btn-primary'}`} onClick={handleCopy}>
                         <Copy size={18} /> {copySuccess ? t('copied') || "Copié !" : t('copy')}
@@ -62,7 +72,7 @@ const ResultModal = ({ isOpen, onClose, prompt, onSave }) => {
                     <div className="provider-links">
                         {providers.map(p => (
                             <a key={p.name} href={p.url} target="_blank" rel="noreferrer">
-                                {p.name} <ExternalLink size={12} style={{ marginLeft: 4 }}/>
+                                {p.name} <ExternalLink size={12} style={{ marginLeft: 4 }} />
                             </a>
                         ))}
                     </div>

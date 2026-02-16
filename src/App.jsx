@@ -33,6 +33,19 @@ function App() {
   const handleGenerate = (prompt) => {
     setGeneratedPrompt(prompt);
     setIsResultOpen(true);
+    setIsResultOpen(true);
+  };
+
+  const handleSavePrompt = () => {
+    if (!generatedPrompt) return;
+    const saved = JSON.parse(localStorage.getItem('savedPrompts') || '[]');
+    const newPrompt = {
+      id: Date.now(),
+      method: activeTab,
+      date: new Date().toISOString(),
+      text: generatedPrompt
+    };
+    localStorage.setItem('savedPrompts', JSON.stringify([newPrompt, ...saved]));
   };
 
   // handleSave is now handled inside ResultModal or manually if needed, 
@@ -83,6 +96,7 @@ function App() {
         isOpen={isResultOpen}
         onClose={() => setIsResultOpen(false)}
         prompt={generatedPrompt}
+        onSave={handleSavePrompt}
       />
 
       <SavedPromptsModal
