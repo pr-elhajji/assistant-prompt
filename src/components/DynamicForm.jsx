@@ -231,6 +231,11 @@ const DynamicForm = ({ method, markdownData, onGenerate }) => {
                     `⚠️ ${t('ollama_cors_help') || "Possible CORS Issue with Ollama"}\n` +
                     `Run: OLLAMA_ORIGINS="*" ollama serve`
                 );
+            } else if (errorMessage.includes("No models provided") || errorMessage.includes("Model is missing")) {
+                alert(
+                    `${t('ai_error')}: ${errorMessage}\n\n` +
+                    `⚠️ ${t('configure_model_help') || "Please go to Settings and select a Model for the chosen Provider."}`
+                );
             } else {
                 alert(t('ai_error') || "AI Generation Failed: " + errorMessage);
             }

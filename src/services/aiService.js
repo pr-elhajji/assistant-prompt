@@ -19,6 +19,47 @@ export const getOllamaModels = async (settings) => {
     }
 };
 
+export const getOpenAIModels = async (apiKey) => {
+    if (!apiKey) return [];
+    try {
+        const response = await fetch('https://api.openai.com/v1/models', {
+            headers: { 'Authorization': `Bearer ${apiKey}` }
+        });
+        if (!response.ok) throw new Error("Failed to fetch OpenAI models");
+        const data = await response.json();
+        return data.data.map(m => m.id).sort();
+    } catch (error) {
+        console.error("Error fetching OpenAI models:", error);
+        return [];
+    }
+};
+
+export const getGeminiModels = async (apiKey) => {
+    if (!apiKey) return [];
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+        if (!response.ok) throw new Error("Failed to fetch Gemini models");
+        const data = await response.json();
+        return data.models.map(m => m.name.replace('models/', '')).sort();
+    } catch (error) {
+        console.error("Error fetching Gemini models:", error);
+        return [];
+    }
+};
+
+export const getOpenRouterModels = async (apiKey) => {
+    if (!apiKey) return [];
+    try {
+        const response = await fetch('https://openrouter.ai/api/v1/models');
+        if (!response.ok) throw new Error("Failed to fetch OpenRouter models");
+        const data = await response.json();
+        return data.data.map(m => m.id).sort();
+    } catch (error) {
+        console.error("Error fetching OpenRouter models:", error);
+        return [];
+    }
+};
+
 export const generateText = async (prompt, context = "") => {
     const settings = getSettings();
     const fullPrompt = context ? `${context}\n\nTask: ${prompt}` : prompt; // Simple prompt construction
@@ -122,6 +163,7 @@ const callGemini = async (settings, prompt) => {
 
 const callOpenRouter = async (settings, prompt) => {
     if (!settings.openRouterKey) throw new Error("OpenRouter API Key is missing");
+    if (!settings.openRouterModel) throw new Error("OpenRouter Model is missing. Please select a model in Settings.");
 
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',

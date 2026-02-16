@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Save, X, RefreshCw } from 'lucide-react';
-import { getOllamaModels } from '../services/aiService';
+import { getOllamaModels, getOpenAIModels, getGeminiModels, getOpenRouterModels } from '../services/aiService';
 
 const SettingsModal = ({ isOpen, onClose }) => {
     const { t } = useTranslation();
@@ -18,6 +18,9 @@ const SettingsModal = ({ isOpen, onClose }) => {
         temperature: 0.7
     });
     const [ollamaModels, setOllamaModels] = useState([]);
+    const [openaiModels, setOpenaiModels] = useState([]);
+    const [geminiModels, setGeminiModels] = useState([]);
+    const [openRouterModels, setOpenRouterModels] = useState([]);
     const [isLoadingModels, setIsLoadingModels] = useState(false);
 
     useEffect(() => {
@@ -48,6 +51,36 @@ const SettingsModal = ({ isOpen, onClose }) => {
             setSettings(prev => ({ ...prev, ollamaModel: models[0] }));
         }
     }, [settings]);
+
+    const fetchOpenAIModels = React.useCallback(async () => {
+        setIsLoadingModels(true);
+        const models = await getOpenAIModels(settings.openaiKey);
+        setOpenaiModels(models);
+        setIsLoadingModels(false);
+        if (models.length > 0 && !models.includes(settings.openaiModel)) {
+            setSettings(prev => ({ ...prev, openaiModel: models[0] }));
+        }
+    }, [settings.openaiKey, settings.openaiModel]);
+
+    const fetchGeminiModels = React.useCallback(async () => {
+        setIsLoadingModels(true);
+        const models = await getGeminiModels(settings.geminiKey);
+        setGeminiModels(models);
+        setIsLoadingModels(false);
+        if (models.length > 0 && !models.includes(settings.geminiModel)) {
+            setSettings(prev => ({ ...prev, geminiModel: models[0] }));
+        }
+    }, [settings.geminiKey, settings.geminiModel]);
+
+    const fetchOpenRouterModels = React.useCallback(async () => {
+        setIsLoadingModels(true);
+        const models = await getOpenRouterModels(settings.openRouterKey);
+        setOpenRouterModels(models);
+        setIsLoadingModels(false);
+        if (models.length > 0 && !models.includes(settings.openRouterModel)) {
+            setSettings(prev => ({ ...prev, openRouterModel: models[0] })); // Default to first if not set
+        }
+    }, [settings.openRouterKey, settings.openRouterModel]);
 
     // Auto-fetch on open if provider is ollama
     useEffect(() => {
@@ -137,14 +170,25 @@ const SettingsModal = ({ isOpen, onClose }) => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>Model</label>
-                            <input
-                                type="text"
-                                name="openaiModel"
-                                value={settings.openaiModel}
-                                onChange={handleChange}
-                                placeholder="gpt-3.5-turbo, gpt-4"
-                            />
+                            <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                {t('model_name') || "Model"}
+                                <button type="button" onClick={fetchOpenAIModels} className="btn btn-sm btn-secondary" disabled={isLoadingModels || !settings.openaiKey}>
+                                    <RefreshCw size={14} className={isLoadingModels ? "animate-spin" : ""} /> {t('fetch_models')}
+                                </button>
+                            </label>
+                            {openaiModels.length > 0 ? (
+                                <select name="openaiModel" value={settings.openaiModel} onChange={handleChange}>
+                                    {openaiModels.map(m => <option key={m} value={m}>{m}</option>)}
+                                </select>
+                            ) : (
+                                <input
+                                    type="text"
+                                    name="openaiModel"
+                                    value={settings.openaiModel}
+                                    onChange={handleChange}
+                                    placeholder="gpt-3.5-turbo, gpt-4"
+                                />
+                            )}
                         </div>
                     </div>
                 )}
@@ -163,14 +207,25 @@ const SettingsModal = ({ isOpen, onClose }) => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>{t('model_name')}</label>
-                            <input
-                                type="text"
-                                name="geminiModel"
-                                value={settings.geminiModel}
-                                onChange={handleChange}
-                                placeholder="gemini-pro"
-                            />
+                            <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                {t('model_name')}
+                                <button type="button" onClick={fetchGeminiModels} className="btn btn-sm btn-secondary" disabled={isLoadingModels || !settings.geminiKey}>
+                                    <RefreshCw size={14} className={isLoadingModels ? "animate-spin" : ""} /> {t('fetch_models')}
+                                </button>
+                            </label>
+                            {geminiModels.length > 0 ? (
+                                <select name="geminiModel" value={settings.geminiModel} onChange={handleChange}>
+                                    {geminiModels.map(m => <option key={m} value={m}>{m}</option>)}
+                                </select>
+                            ) : (
+                                <input
+                                    type="text"
+                                    name="geminiModel"
+                                    value={settings.geminiModel}
+                                    onChange={handleChange}
+                                    placeholder="gemini-pro"
+                                />
+                            )}
                         </div>
                     </div>
                 )}
@@ -189,14 +244,25 @@ const SettingsModal = ({ isOpen, onClose }) => {
                             />
                         </div>
                         <div className="form-group">
-                            <label>{t('model_name')}</label>
-                            <input
-                                type="text"
-                                name="openRouterModel"
-                                value={settings.openRouterModel}
-                                onChange={handleChange}
-                                placeholder="openai/gpt-3.5-turbo, anthropic/claude-3-haiku"
-                            />
+                            <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                {t('model_name')}
+                                <button type="button" onClick={fetchOpenRouterModels} className="btn btn-sm btn-secondary" disabled={isLoadingModels || !settings.openRouterKey}>
+                                    <RefreshCw size={14} className={isLoadingModels ? "animate-spin" : ""} /> {t('fetch_models')}
+                                </button>
+                            </label>
+                            {openRouterModels.length > 0 ? (
+                                <select name="openRouterModel" value={settings.openRouterModel} onChange={handleChange}>
+                                    {openRouterModels.map(m => <option key={m} value={m}>{m}</option>)}
+                                </select>
+                            ) : (
+                                <input
+                                    type="text"
+                                    name="openRouterModel"
+                                    value={settings.openRouterModel}
+                                    onChange={handleChange}
+                                    placeholder="openai/gpt-3.5-turbo, anthropic/claude-3-haiku"
+                                />
+                            )}
                         </div>
                     </div>
                 )}
