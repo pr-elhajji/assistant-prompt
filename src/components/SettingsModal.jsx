@@ -22,7 +22,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
         if (isOpen) {
             const savedSettings = localStorage.getItem('aiSettings');
             if (savedSettings) {
-                setSettings(JSON.parse(savedSettings));
+                setSettings(JSON.parse(savedSettings)); // eslint-disable-line
             }
         }
     }, [isOpen]);
@@ -37,7 +37,7 @@ const SettingsModal = ({ isOpen, onClose }) => {
         onClose();
     };
 
-    const fetchOllamaModels = async () => {
+    const fetchOllamaModels = React.useCallback(async () => {
         setIsLoadingModels(true);
         const models = await getOllamaModels(settings);
         setOllamaModels(models);
@@ -45,14 +45,14 @@ const SettingsModal = ({ isOpen, onClose }) => {
         if (models.length > 0 && !models.includes(settings.ollamaModel)) {
              setSettings(prev => ({...prev, ollamaModel: models[0]}));
         }
-    };
+    }, [settings]);
     
     // Auto-fetch on open if provider is ollama
     useEffect(() => {
         if (isOpen && settings.provider === 'ollama' && ollamaModels.length === 0) {
-             fetchOllamaModels();
+             fetchOllamaModels(); // eslint-disable-line
         }
-    }, [isOpen, settings.provider]);
+    }, [isOpen, settings.provider, ollamaModels.length, fetchOllamaModels]);
 
     if (!isOpen) return null;
 

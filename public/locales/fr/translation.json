@@ -47,5 +47,10 @@
     "translate_to_english": "Traduire votre Prompt en anglais",
     "step_by_step": "Ajouter 'Pense étape par étape'",
     "footer_credits": "M.EL Hajji",
-    "footer_license": "CC BY NC SA"
+    "footer_license": "CC BY NC SA",
+    "help_title": "Aide & Contribution",
+    "help_content": "Ce projet est open source. Vous pouvez contribuer en signalant des bugs ou en proposant des fonctionnalités sur GitHub.",
+    "repo_link": "Voir le code source",
+    "contact": "Contact",
+    "version": "Version"
 }

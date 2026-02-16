@@ -47,5 +47,12 @@
     "step_by_step": "أضف 'فكر خطوة بخطوة'",
     "step_by_step_instruction": "فكر خطوة بخطوة قبل الإجابة.",
     "footer_credits": "M.EL Hajji",
-    "footer_license": "CC BY NC SA"
+    "footer_license": "CC BY NC SA",
+    "settings_save": "حفظ",
+    "settings_cancel": "إلغاء",
+    "help_title": "المساعدة والمساهمة",
+    "help_content": "هذا المشروع مفتوح المصدر. يمكنك المساهمة من خلال الإبلاغ عن الأخطاء أو اقتراح ميزات جديدة على GitHub.",
+    "repo_link": "عرض الكود المصدري",
+    "contact": "اتصل بنا",
+    "version": "الإصدار"
 }

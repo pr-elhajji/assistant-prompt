@@ -9,7 +9,7 @@ const SavedPromptsModal = ({ isOpen, onClose }) => {
     useEffect(() => {
         if (isOpen) {
             const saved = JSON.parse(localStorage.getItem('savedPrompts') || '[]');
-            setSavedPrompts(saved);
+            setSavedPrompts(saved); // eslint-disable-line
         }
     }, [isOpen]);
 
